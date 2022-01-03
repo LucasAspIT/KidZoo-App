@@ -75,5 +75,8 @@ Assets/Editor Default Resources/Firebase.meta
 Assets/Plugins/iOS/Firebase*
 Assets/Plugins/iOS/Firebase.meta
 Assets/google-services.json
+Assets/google-services.json.meta
 Assets/StreamingAssets/google-services-desktop.json
+Assets/StreamingAssets/google-services-desktop.json.meta
 Assets/Plugins/Android/FirebaseApp.androidlib/res/values/google-services.xml
+
