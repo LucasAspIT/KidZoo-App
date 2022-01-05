@@ -89,30 +89,6 @@ public class FirebaseManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Clears the fields on the login UI.
-    /// </summary>
-    public void ClearLoginFields()
-    {
-        emailLoginField.text = "";
-        passwordLoginField.text = "";
-    }
-
-    /// <summary>
-    /// Clears the text fields on the Register UI.
-    /// </summary>
-    public void ClearRegisterFields()
-    {
-        fullNameRegisterField.text = "";
-        emailRegisterField.text = "";
-        birthdayRegisterField.text = "";
-        streetnameRegisterField.text = "";
-        cityRegisterField.text = "";
-        zipcodeRegisterField.text = "";
-        passwordRegisterField.text = "";
-        passwordRegisterVerifyField.text = "";
-    }
-
-    /// <summary>
     /// Function for login button.
     /// </summary>
     public void LoginButton()
@@ -157,6 +133,30 @@ public class FirebaseManager : MonoBehaviour
     public void UserLogButton()
     {
         // StartCoroutine(LoadUserLogData()); // ### Change this to the relevant function when it has been created
+    }
+
+    /// <summary>
+    /// Clears the fields on the login UI.
+    /// </summary>
+    public void ClearLoginFields()
+    {
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+    }
+
+    /// <summary>
+    /// Clears the text fields on the Register UI.
+    /// </summary>
+    public void ClearRegisterFields()
+    {
+        fullNameRegisterField.text = "";
+        emailRegisterField.text = "";
+        birthdayRegisterField.text = "";
+        streetnameRegisterField.text = "";
+        cityRegisterField.text = "";
+        zipcodeRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
     }
 
     /// <summary>
