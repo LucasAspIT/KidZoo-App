@@ -13,31 +13,31 @@ public class FirebaseManager : MonoBehaviour
 {
     // Firebase variables
     [Header("Firebase")]
-    public DependencyStatus dependencyStatus;
-    public FirebaseAuth auth;    
-    public FirebaseUser User;
-    public DatabaseReference DBreference;
+    [SerializeField] DependencyStatus dependencyStatus;
+    [SerializeField] FirebaseAuth auth;
+    [SerializeField] FirebaseUser User;
+    [SerializeField] DatabaseReference DBreference;
 
     // Login variables
     [Header("Login")]
     public TMP_InputField emailLoginField;
     public TMP_InputField passwordLoginField;
-    public TMP_Text warningLoginText;
-    public TMP_Text confirmLoginText;
     public Toggle saveLoginEmail;
     public Toggle saveLoginPassword;
+    [SerializeField] TMP_Text warningLoginText;
+    [SerializeField] TMP_Text confirmLoginText;
 
     // Register variables
     [Header("Register")]
-    public TMP_InputField fullNameRegisterField;
-    public TMP_InputField emailRegisterField;
-    public TMP_InputField birthdayRegisterField;
-    public TMP_InputField streetnameRegisterField;
-    public TMP_InputField cityRegisterField;
-    public TMP_InputField zipcodeRegisterField;
-    public TMP_InputField passwordRegisterField;
-    public TMP_InputField passwordRegisterVerifyField;
-    public TMP_Text warningRegisterText;
+    [SerializeField] TMP_InputField fullNameRegisterField;
+    [SerializeField] TMP_InputField emailRegisterField;
+    [SerializeField] TMP_InputField birthdayRegisterField;
+    [SerializeField] TMP_InputField streetnameRegisterField;
+    [SerializeField] TMP_InputField cityRegisterField;
+    [SerializeField] TMP_InputField zipcodeRegisterField;
+    [SerializeField] TMP_InputField passwordRegisterField;
+    [SerializeField] TMP_InputField passwordRegisterVerifyField;
+    [SerializeField] TMP_Text warningRegisterText;
 
     private static FirebaseManager instance;
     public static FirebaseManager Instance
