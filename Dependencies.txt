@@ -1,5 +1,6 @@
 Unity Asset Store:
 Clean Settings UI
+Poly Art Animal Icons (MalberS Animations)
 
 3rd Party:
 Firebase Authentication
