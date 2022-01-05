@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerPrefsControl : MonoBehaviour
 {
-    public bool SaveEmail;
-    public bool SavePassword;
-
     private static PlayerPrefsControl instance;
 
     public static PlayerPrefsControl Instance
@@ -28,7 +25,7 @@ public class PlayerPrefsControl : MonoBehaviour
             instance = this;
         }
 
-
+/*
         if (PlayerPrefs.GetInt("SavedEmailBool", 1) == 1)
         {
             SaveEmail = true;
@@ -37,24 +34,27 @@ public class PlayerPrefsControl : MonoBehaviour
         {
             SavePassword = true;
         }
+*/
     }
 
 
     public void UseLoginInformation()
     {
-        if (SaveEmail)
+        if (PlayerPrefs.GetInt("SavedEmailBool", 1) == 1)
         {
             FirebaseManager.Instance.emailLoginField.text = PlayerPrefs.GetString("SavedEmail", "");
+            FirebaseManager.Instance.saveLoginEmail.isOn = true;
         }
-        if (SavePassword)
+        if (PlayerPrefs.GetInt("SavedPasswordBool", 1) == 1)
         {
             FirebaseManager.Instance.passwordLoginField.text = PlayerPrefs.GetString("SavedPassword", ""); // ########### THIS IS PROBABLY UNSAFE, BUT FINE FOR AN INTERNAL PRACTICE APP ONLY.
+            FirebaseManager.Instance.saveLoginPassword.isOn = true;
         }
     }
 
     public void SaveLoginInformation()
     {
-        if (SaveEmail)
+        if (PlayerPrefs.GetInt("SavedEmailBool", 1) == 1)
         {
             PlayerPrefs.SetString("SavedEmail", FirebaseManager.Instance.emailLoginField.text);
         }
@@ -63,7 +63,7 @@ public class PlayerPrefsControl : MonoBehaviour
             PlayerPrefs.SetString("SavedEmail", "");
         }
 
-        if (SavePassword)
+        if (PlayerPrefs.GetInt("SavedPasswordBool", 1) == 1)
         {
             PlayerPrefs.SetString("SavedPassword", FirebaseManager.Instance.passwordLoginField.text); // ########### THIS IS PROBABLY UNSAFE, BUT FINE FOR AN INTERNAL PRACTICE APP ONLY.
         }

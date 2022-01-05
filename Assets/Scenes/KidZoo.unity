@@ -617,7 +617,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &263158133
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,7 +2316,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &815978685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,12 +2392,6 @@ MonoBehaviour:
   passwordRegisterField: {fileID: 1413758696}
   passwordRegisterVerifyField: {fileID: 270770658}
   warningRegisterText: {fileID: 6423744962941476817}
-  usernameField: {fileID: 0}
-  highscoreField: {fileID: 0}
-  totalScoreField: {fileID: 0}
-  totalDeathsField: {fileID: 0}
-  scoreElement: {fileID: 0}
-  scoreboardContent: {fileID: 0}
 --- !u!4 &873061019
 Transform:
   m_ObjectHideFlags: 0
@@ -5071,6 +5065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a104d6aa1386cca43ab8300a091003f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startScreen: {fileID: 6423744962665707491}
   loginUI: {fileID: 6423744962252474013}
   registerUI: {fileID: 6423744962162700248}
 --- !u!114 &289108269343449040
@@ -5085,8 +5080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b64287e08befc439912003e7047ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveEmail: 0
-  SavePassword: 0
 --- !u!224 &1648444341354573126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11885,7 +11878,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
