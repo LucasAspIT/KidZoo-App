@@ -3,19 +3,15 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject startScreen;
+    [SerializeField] private GameObject startScreenCanvas;
+    [SerializeField] private GameObject userDashboardCanvas;
+    [SerializeField] private GameObject userDashboard;
+    [SerializeField] private GameObject userLog;
+    [SerializeField] private GameObject loginUI;
+    [SerializeField] private GameObject registerUI;
 
-    [SerializeField]
-    private GameObject userDashboard;
-
-    [SerializeField]
-    private GameObject loginUI;
-
-    [SerializeField]
-    private GameObject registerUI;
-
-    public TMP_Text namedWelcomeMsg;
+    public TMP_Text namedWelcomeMsgDashboard;
+    public TMP_Text namedWelcomeMsgLog;
 
 
     public static UIManager instance;
@@ -42,12 +38,21 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Turn off all UI related to the login, register, user data and scoreboard.
+    /// Turn off all UI related to the login and register.
     /// </summary>
-    public void ClearScreen()
+    public void ClearLoginScreen()
     {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
+    }
+
+    /// <summary>
+    /// Turn off all UI related to the dashboard and personal log.
+    /// </summary>
+    public void ClearDashboardScreen()
+    {
+        userDashboard.SetActive(false);
+        userLog.SetActive(false);
     }
 
     /// <summary>
@@ -55,7 +60,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void LoginScreen()
     {
-        ClearScreen();
+        ClearLoginScreen();
         loginUI.SetActive(true);
     }
 
@@ -64,17 +69,39 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void RegisterScreen()
     {
-        ClearScreen();
+        ClearLoginScreen();
         registerUI.SetActive(true);
     }
+
+    /// <summary>
+    /// Opens the dashboard screen.
+    /// </summary>
+    public void DashboardScreen()
+    {
+        ClearDashboardScreen();
+        userDashboard.SetActive(true);
+    }
+
+    /// <summary>
+    /// Opens the personal log screen.
+    /// </summary>
+    public void PersonalLogScreen()
+    {
+        ClearDashboardScreen();
+        userLog.SetActive(true);
+    }
+
+
+
+    #region Enabling and disabling of canvases
 
     /// <summary>
     /// Enables the start screen.
     /// </summary>
     public void EnableStartScreen()
     {
-        ClearScreen();
-        startScreen.SetActive(true);
+        ClearLoginScreen();
+        startScreenCanvas.SetActive(true);
     }
 
     /// <summary>
@@ -82,8 +109,8 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void DisableStartScreen()
     {
-        ClearScreen();
-        startScreen.SetActive(false);
+        ClearLoginScreen();
+        startScreenCanvas.SetActive(false);
     }
 
     /// <summary>
@@ -91,8 +118,8 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void EnableUserDashboard()
     {
-        ClearScreen();
-        userDashboard.SetActive(true);
+        ClearLoginScreen();
+        userDashboardCanvas.SetActive(true);
     }
 
     /// <summary>
@@ -100,7 +127,8 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void DisableUserDashboard()
     {
-        ClearScreen();
-        userDashboard.SetActive(true);
+        ClearLoginScreen();
+        userDashboardCanvas.SetActive(true);
     }
+    #endregion
 }

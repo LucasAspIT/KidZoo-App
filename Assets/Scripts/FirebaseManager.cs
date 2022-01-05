@@ -488,10 +488,8 @@ public class FirebaseManager : MonoBehaviour
             DataSnapshot snapshot = DBTask.Result;
 
             // Save the selected info
-            UIManager.Instance.namedWelcomeMsg.text = $"Hello {snapshot.Child("fullname").Value}!";
-            // UIManager.Instance.namedWelcomeMsg.text = "Test123";
-            // Debug.Log("Successfully ran LoadUserData()");
+            UIManager.Instance.namedWelcomeMsgDashboard.text = $"Hello {snapshot.Child("fullname").Value}!";
+            UIManager.Instance.namedWelcomeMsgLog.text = $"Hello {snapshot.Child("fullname").Value}!";
         }
-        // Debug.Log("Finished running LoadUserData()");
     }
 }

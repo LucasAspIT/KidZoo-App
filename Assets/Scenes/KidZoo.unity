@@ -5066,11 +5066,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a104d6aa1386cca43ab8300a091003f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScreen: {fileID: 6423744962665707491}
-  userDashboard: {fileID: 2726041754288167728}
+  startScreenCanvas: {fileID: 6423744962665707491}
+  userDashboardCanvas: {fileID: 2726041754288167728}
+  userDashboard: {fileID: 2726041754210108345}
+  userLog: {fileID: 2726041755134637085}
   loginUI: {fileID: 6423744962252474013}
   registerUI: {fileID: 6423744962162700248}
-  namedWelcomeMsg: {fileID: 2726041755005815490}
+  namedWelcomeMsgDashboard: {fileID: 2726041755005815490}
+  namedWelcomeMsgLog: {fileID: 2726041753172804213}
 --- !u!114 &289108269343449040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13164,7 +13167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2726041754210108344}
   m_Layer: 5
-  m_Name: Main dashboard
+  m_Name: Main Dashboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13706,7 +13709,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2726041754837230337}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 289108269343449039}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: DashboardScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &2726041754837230343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13906,7 +13921,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2726041754943753225}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 289108269343449039}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: PersonalLogScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &2726041754943753231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14136,9 +14163,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 873061018}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: LoginButton
+        m_MethodName: SignOutButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14306,7 +14333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2726041755134637084}
   m_Layer: 5
-  m_Name: Log
+  m_Name: Personal Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
