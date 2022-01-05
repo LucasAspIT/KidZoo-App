@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -6,10 +7,15 @@ public class UIManager : MonoBehaviour
     private GameObject startScreen;
 
     [SerializeField]
+    private GameObject userDashboard;
+
+    [SerializeField]
     private GameObject loginUI;
 
     [SerializeField]
     private GameObject registerUI;
+
+    public TMP_Text namedWelcomeMsg;
 
 
     public static UIManager instance;
@@ -45,7 +51,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Open the login screen.
+    /// Opens the login screen.
     /// </summary>
     public void LoginScreen()
     {
@@ -54,7 +60,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Open the register screen.
+    /// Opens the register screen.
     /// </summary>
     public void RegisterScreen()
     {
@@ -63,11 +69,38 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Close the start screen.
+    /// Enables the start screen.
     /// </summary>
-    public void CloseStartScreen()
+    public void EnableStartScreen()
+    {
+        ClearScreen();
+        startScreen.SetActive(true);
+    }
+
+    /// <summary>
+    /// Disables the start screen.
+    /// </summary>
+    public void DisableStartScreen()
     {
         ClearScreen();
         startScreen.SetActive(false);
+    }
+
+    /// <summary>
+    /// Enable the user dashboard.
+    /// </summary>
+    public void EnableUserDashboard()
+    {
+        ClearScreen();
+        userDashboard.SetActive(true);
+    }
+
+    /// <summary>
+    /// Disables the user dashboard.
+    /// </summary>
+    public void DisableUserDashboard()
+    {
+        ClearScreen();
+        userDashboard.SetActive(true);
     }
 }

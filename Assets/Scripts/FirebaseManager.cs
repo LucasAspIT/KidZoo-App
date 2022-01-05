@@ -114,9 +114,12 @@ public class FirebaseManager : MonoBehaviour
     public void SignOutButton()
     {
         auth.SignOut();
+        UIManager.Instance.DisableUserDashboard();
+        UIManager.Instance.EnableStartScreen();
         UIManager.Instance.LoginScreen();
         ClearRegisterFields();
         ClearLoginFields();
+        Debug.Log("User signed out successfully.");
     }
 
     /// <summary>
@@ -214,7 +217,9 @@ public class FirebaseManager : MonoBehaviour
             confirmLoginText.text = "";
             ClearLoginFields();
             ClearRegisterFields();
-            UIManager.Instance.CloseStartScreen();
+            StartCoroutine(LoadUserData());
+            UIManager.Instance.DisableStartScreen();
+            UIManager.Instance.EnableUserDashboard();
         }
     }
 
@@ -335,6 +340,8 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+
+
     private IEnumerator SaveFullNameDatabase(string _fullName)
     {
         // Set the currently logged in user username in the database
@@ -452,5 +459,39 @@ public class FirebaseManager : MonoBehaviour
         {
             // Database register date is now registered.
         }
+    }
+
+
+
+    /// <summary>
+    /// Loads the users data from the DB and saves it for later use.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator LoadUserData()
+    {
+        // Get the currently logged in user data
+        var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else if (DBTask.Result.Value == null)
+        {
+            Debug.LogWarning("LoadUserData() DBTask.Result.Value returned null!");
+        }
+        else
+        {
+            // Data has been retrieved
+            DataSnapshot snapshot = DBTask.Result;
+
+            // Save the selected info
+            UIManager.Instance.namedWelcomeMsg.text = $"Hello {snapshot.Child("fullname").Value}!";
+            // UIManager.Instance.namedWelcomeMsg.text = "Test123";
+            // Debug.Log("Successfully ran LoadUserData()");
+        }
+        // Debug.Log("Finished running LoadUserData()");
     }
 }
