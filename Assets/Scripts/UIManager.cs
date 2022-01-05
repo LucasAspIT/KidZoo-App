@@ -4,6 +4,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [SerializeField]
+    private GameObject startScreen;
+
     // Screen object variables
     public GameObject loginUI;
     public GameObject registerUI;
@@ -46,6 +49,12 @@ public class UIManager : MonoBehaviour
     {
         ClearScreen();
         registerUI.SetActive(true);
+    }
+
+    public void CloseStartScreen()
+    {
+        ClearScreen();
+        startScreen.SetActive(false);
     }
 
 /*

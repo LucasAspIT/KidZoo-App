@@ -260,6 +260,7 @@ public class FirebaseManager : MonoBehaviour
             confirmLoginText.text = "";
             ClearLoginFields();
             ClearRegisterFields();
+            UIManager.instance.CloseStartScreen();
         }
     }
 
