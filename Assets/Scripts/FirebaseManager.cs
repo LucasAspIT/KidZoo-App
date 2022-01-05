@@ -39,6 +39,7 @@ public class FirebaseManager : MonoBehaviour
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
 
+/*
     // User Data variables
     [Header("UserData")]
     public TMP_InputField usernameField;
@@ -50,6 +51,7 @@ public class FirebaseManager : MonoBehaviour
     private int curLoadedDBHighscore = 0;
     private int curLoadedDBTScore;
     private int curLoadedDBTDeaths;
+*/
 
     private static FirebaseManager instance;
     public static FirebaseManager Instance
@@ -149,6 +151,7 @@ public class FirebaseManager : MonoBehaviour
         ClearLoginFields();
     }
 
+/*
     // Function for button that saves manually edited DB stats. Should be used for testing purposes
     public void SaveDataButton()
     {
@@ -159,6 +162,7 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateTotalScore(int.Parse(totalScoreField.text)));
         StartCoroutine(UpdateTotalDeaths(int.Parse(totalDeathsField.text)));
     }
+*/
 
     // Function for the play button
     public void PlayButton()
@@ -166,11 +170,13 @@ public class FirebaseManager : MonoBehaviour
         SceneManager.LoadScene("EndlessRunner");
     }
 
+/*
     // Function for the scoreboard button
     public void ScoreboardButton()
     {
         StartCoroutine(LoadScoreboardData());
     }
+*/
 
     public void SaveLoginToggleState()
     {
@@ -245,11 +251,11 @@ public class FirebaseManager : MonoBehaviour
             // PlayerPrefs.SetString("SavedEmail", emailLoginField.text);
             // PlayerPrefs.SetString("SavedPassword", passwordLoginField.text); // ########### THIS IS PROBABLY UNSAFE, BUT FINE FOR AN INTERNAL PRACTICE APP ONLY.
             // SaveLoginToggleState();
-            StartCoroutine(LoadUserData());
+            // StartCoroutine(LoadUserData());
 
             yield return new WaitForSeconds(2);
 
-            usernameField.text = User.DisplayName;
+            // usernameField.text = User.DisplayName;
             // UIManager.instance.UserDataScreen();
             confirmLoginText.text = "";
             ClearLoginFields();
@@ -534,6 +540,7 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+/*
     private IEnumerator UpdateHighscore(int _highscore)
     {
         // Only update the database if the highscore is actually a highscore
@@ -599,6 +606,7 @@ public class FirebaseManager : MonoBehaviour
             curLoadedDBTDeaths = _totalDeaths;
         }
     }
+
 
 
     /// <summary>
@@ -709,4 +717,6 @@ public class FirebaseManager : MonoBehaviour
             // UIManager.instance.ScoreboardScreen();
         }
     }
+
+    */
 }
