@@ -68,4 +68,28 @@ public class PlayerPrefsControl : MonoBehaviour
             PlayerPrefs.SetString("SavedPassword", "");
         }
     }
+
+    /// <summary>
+    /// Saves the login screen's checkboxes checked/unchecked states in PlayerPrefs.
+    /// </summary>
+    public void SaveLoginToggleState()
+    {
+        if (FirebaseManager.Instance.saveLoginEmail.isOn)
+        {
+            PlayerPrefs.SetInt("SavedEmailBool", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SavedEmailBool", 0);
+        }
+
+        if (FirebaseManager.Instance.saveLoginPassword.isOn)
+        {
+            PlayerPrefs.SetInt("SavedPasswordBool", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SavedPasswordBool", 0);
+        }
+    }
 }

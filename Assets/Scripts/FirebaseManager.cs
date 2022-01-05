@@ -117,7 +117,7 @@ public class FirebaseManager : MonoBehaviour
     /// </summary>
     public void LoginButton()
     {
-        SaveLoginToggleState();
+        PlayerPrefsControl.Instance.SaveLoginToggleState();
         PlayerPrefsControl.Instance.SaveLoginInformation();
         // Call the login coroutine passing the email and password
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
@@ -154,30 +154,9 @@ public class FirebaseManager : MonoBehaviour
     /// <summary>
     /// Function for button that loads the data from the DB and goes to the user's log.
     /// </summary>
-    public void ScoreboardButton()
+    public void UserLogButton()
     {
-        // StartCoroutine(LoadScoreboardData()); // ### Change this to the relevant function when it has been created
-    }
-
-    public void SaveLoginToggleState() // ############################ Move to PlayerPrefsControl?
-    {
-        if (saveLoginEmail.isOn)
-        {
-            PlayerPrefs.SetInt("SavedEmailBool", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("SavedEmailBool", 0);
-        }
-
-        if (saveLoginPassword.isOn)
-        {
-            PlayerPrefs.SetInt("SavedPasswordBool", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("SavedPasswordBool", 0);
-        }
+        // StartCoroutine(LoadUserLogData()); // ### Change this to the relevant function when it has been created
     }
 
     /// <summary>
