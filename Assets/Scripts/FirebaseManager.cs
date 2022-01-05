@@ -39,20 +39,6 @@ public class FirebaseManager : MonoBehaviour
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
 
-/*
-    // User Data variables
-    [Header("UserData")]
-    public TMP_InputField usernameField;
-    public TMP_InputField highscoreField;
-    public TMP_InputField totalScoreField;
-    public TMP_InputField totalDeathsField;
-    public GameObject scoreElement;
-    public Transform scoreboardContent;
-    private int curLoadedDBHighscore = 0;
-    private int curLoadedDBTScore;
-    private int curLoadedDBTDeaths;
-*/
-
     private static FirebaseManager instance;
     public static FirebaseManager Instance
     {
@@ -126,7 +112,9 @@ public class FirebaseManager : MonoBehaviour
         passwordRegisterVerifyField.text = "";
     }
 
-    // Function for login button
+    /// <summary>
+    /// Function for login button.
+    /// </summary>
     public void LoginButton()
     {
         SaveLoginToggleState();
@@ -135,14 +123,18 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
     }
 
-    // Function for the register button
+    /// <summary>
+    /// Function for the register button.
+    /// </summary>
     public void RegisterButton()
     {
         // Call the register coroutine passing the email, password, and username
         StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, fullNameRegisterField.text, birthdayRegisterField.text, streetnameRegisterField.text, cityRegisterField.text, zipcodeRegisterField.text));
     }
 
-    // Function for the sign out button
+    /// <summary>
+    /// Function for the sign out button.
+    /// </summary>
     public void SignOutButton()
     {
         auth.SignOut();
@@ -151,34 +143,23 @@ public class FirebaseManager : MonoBehaviour
         ClearLoginFields();
     }
 
-/*
-    // Function for button that saves manually edited DB stats. Should be used for testing purposes
+    /// <summary>
+    /// Function for button that saves the user's log content to the DB.
+    /// </summary>
     public void SaveDataButton()
     {
-        StartCoroutine(UpdateUsernameAuth(usernameField.text));
-        StartCoroutine(UpdateUsernameDatabase(usernameField.text));
-
-        StartCoroutine(UpdateHighscore(int.Parse(highscoreField.text)));
-        StartCoroutine(UpdateTotalScore(int.Parse(totalScoreField.text)));
-        StartCoroutine(UpdateTotalDeaths(int.Parse(totalDeathsField.text)));
-    }
-*/
-
-    // Function for the play button
-    public void PlayButton()
-    {
-        SceneManager.LoadScene("EndlessRunner");
+        // StartCoroutine(UpdateUsernameAuth(usernameField.text)); // ### Change this to the relevant function when it has been created
     }
 
-/*
-    // Function for the scoreboard button
+    /// <summary>
+    /// Function for button that loads the data from the DB and goes to the user's log.
+    /// </summary>
     public void ScoreboardButton()
     {
-        StartCoroutine(LoadScoreboardData());
+        // StartCoroutine(LoadScoreboardData()); // ### Change this to the relevant function when it has been created
     }
-*/
 
-    public void SaveLoginToggleState()
+    public void SaveLoginToggleState() // ############################ Move to PlayerPrefsControl?
     {
         if (saveLoginEmail.isOn)
         {
@@ -248,15 +229,9 @@ public class FirebaseManager : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged in";
-            // PlayerPrefs.SetString("SavedEmail", emailLoginField.text);
-            // PlayerPrefs.SetString("SavedPassword", passwordLoginField.text); // ########### THIS IS PROBABLY UNSAFE, BUT FINE FOR AN INTERNAL PRACTICE APP ONLY.
-            // SaveLoginToggleState();
-            // StartCoroutine(LoadUserData());
 
             yield return new WaitForSeconds(2);
 
-            // usernameField.text = User.DisplayName;
-            // UIManager.instance.UserDataScreen();
             confirmLoginText.text = "";
             ClearLoginFields();
             ClearRegisterFields();
@@ -362,7 +337,6 @@ public class FirebaseManager : MonoBehaviour
                     else
                     {
                         // Set the initial database values
-                        StartCoroutine(UpdateUsernameDatabase(_fullName));
                         StartCoroutine(SaveFullNameDatabase(_fullName));
                         StartCoroutine(SaveEmailDatabase(_email));
                         StartCoroutine(SaveBirthdayDatabase(_birthday));
@@ -371,7 +345,6 @@ public class FirebaseManager : MonoBehaviour
                         StartCoroutine(SaveZipcodeDatabase(_zipcode));
                         StartCoroutine(SaveRegisterDateDatabase());
 
-                        // Username is now set
                         // Now return to login screen
                         UIManager.Instance.LoginScreen();
                         warningRegisterText.text = "";
@@ -382,45 +355,6 @@ public class FirebaseManager : MonoBehaviour
             }
         }
     }
-
-    private IEnumerator UpdateUsernameAuth(string _username)
-    {
-        // Create a user profile and set the username
-        UserProfile profile = new UserProfile { DisplayName = _username };
-
-        // Call the Firebase auth update user profile function passing the profile with the username
-        var ProfileTask = User.UpdateUserProfileAsync(profile);
-        // Wait until the task completes
-        yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
-
-        if (ProfileTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
-        }
-        else
-        {
-            // Auth username is now updated
-        }
-    }
-
-    private IEnumerator UpdateUsernameDatabase(string _username)
-    {
-        // Set the currently logged in user username in the database
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("username").SetValueAsync(_username);
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            // Database username is now updated
-        }
-    }
-
-    // ###################################################### CURRENTLY WORKING ON THIS
 
     private IEnumerator SaveFullNameDatabase(string _fullName)
     {
@@ -540,184 +474,4 @@ public class FirebaseManager : MonoBehaviour
             // Database register date is now registered.
         }
     }
-
-/*
-    private IEnumerator UpdateHighscore(int _highscore)
-    {
-        // Only update the database if the highscore is actually a highscore
-        if (_highscore > curLoadedDBHighscore || curLoadedDBHighscore == 0)
-        {
-            // Set the currently logged in user highscore
-            var DBTask = DBreference.Child("users").Child(User.UserId).Child("highscore").SetValueAsync(_highscore);
-
-            yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-            if (DBTask.Exception != null)
-            {
-                Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-            }
-            else
-            {
-                // Highscore is now updated
-                Debug.Log("Updated DB Highscore.");
-            }
-        }
-    }
-
-    private IEnumerator UpdateTotalScore(int _totalScore)
-    {
-        // Add the score gained in the game to the total score
-        _totalScore += curLoadedDBTScore;
-
-        // Set the currently logged in user totalScore
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("totalScore").SetValueAsync(_totalScore);
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            // Total score is now updated
-            Debug.Log("Updated DB TotalScore.");
-            curLoadedDBTScore = _totalScore;
-        }
-    }
-
-    private IEnumerator UpdateTotalDeaths(int _totalDeaths)
-    {
-        // Add the death to the total deaths count
-        _totalDeaths += curLoadedDBTDeaths;
-
-        // Set the currently logged in user totalDeaths
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("totalDeaths").SetValueAsync(_totalDeaths);
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            // Total deaths are now updated
-            Debug.Log("Updated DB TotalDeaths.");
-            curLoadedDBTDeaths = _totalDeaths;
-        }
-    }
-
-
-
-    /// <summary>
-    /// Starts the coroutines that take are of updating the database.
-    /// <para>Highscore, total score and death count is sent.</para>
-    /// </summary>
-    /// <param name="_highscore"></param>
-    /// <param name="_totalScore"></param>
-    public void UpdateDatabaseUponDeath(int _highscore, int _totalScore)
-    {
-        StartCoroutine(UpdateHighscore(_highscore));
-        StartCoroutine(UpdateTotalScore(_totalScore));
-        StartCoroutine(UpdateTotalDeaths(1));
-
-        Debug.Log("UpdateDatabaseUponDeath() called.");
-    }
-
-    /// <summary>
-    /// In case the local highscore is higher than the database highscore, this can be fired.
-    /// </summary>
-    public void UpdateDatabaseHighscoreOnLoad(int _highscore)
-    {
-        StartCoroutine(UpdateHighscore(_highscore));
-    }
-
-    /// <summary>
-    /// Loads the currently logged in user's data from the database.
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator LoadUserData()
-    {
-        // Get the currently logged in user data
-        var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else if (DBTask.Result.Value == null)
-        {
-            // No data exists yet
-            highscoreField.text = "0";
-            totalScoreField.text = "0";
-            totalDeathsField.text = "0";
-
-            SaveDataButton();
-        }
-        else
-        {
-            // Data has been retrieved
-            DataSnapshot snapshot = DBTask.Result;
-
-            // Save the info for use in the scoreboard, and for later when updating the DB
-            highscoreField.text = snapshot.Child("highscore").Value.ToString();
-            curLoadedDBHighscore = int.Parse(highscoreField.text);
-            totalScoreField.text = snapshot.Child("totalScore").Value.ToString();
-            curLoadedDBTScore = int.Parse(totalScoreField.text);
-            totalDeathsField.text = snapshot.Child("totalDeaths").Value.ToString();
-            curLoadedDBTDeaths = int.Parse(totalDeathsField.text);
-
-
-            // LoadedData.Instance.Highscore = curLoadedDBHighscore;
-        }
-    }
-
-    /// <summary>
-    /// Loads the scoreboard data from the DB and displays it on the scoreboard element.
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator LoadScoreboardData()
-    {
-        // Get all the users data ordered by highscore
-        var DBTask = DBreference.Child("users").OrderByChild("highscore").GetValueAsync();
-
-        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
-
-        if (DBTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
-        }
-        else
-        {
-            // Data has been retrieved
-            DataSnapshot snapshot = DBTask.Result;
-
-            // Destroy any existing scoreboard elements
-            foreach (Transform child in scoreboardContent.transform)
-            {
-                Destroy(child.gameObject);
-            }
-
-            // Loop through every users UID
-            foreach (DataSnapshot childSnapshot in snapshot.Children.Reverse<DataSnapshot>())
-            {
-                string username = childSnapshot.Child("username").Value.ToString();
-                int highscore = int.Parse(childSnapshot.Child("highscore").Value.ToString());
-                int totalScore = int.Parse(childSnapshot.Child("totalScore").Value.ToString());
-                int totalDeaths = int.Parse(childSnapshot.Child("totalDeaths").Value.ToString());
-
-                // Instantiate new scoreboard elements
-                // GameObject scoreboardElement = Instantiate(scoreElement, scoreboardContent);
-                // scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, highscore, totalScore, totalDeaths);
-            }
-
-            // Go to scoreboard screen
-            // UIManager.instance.ScoreboardScreen();
-        }
-    }
-
-    */
 }
