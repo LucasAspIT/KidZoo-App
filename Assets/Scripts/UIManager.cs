@@ -2,6 +2,16 @@
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject startScreen;
+
+    [SerializeField]
+    private GameObject loginUI;
+
+    [SerializeField]
+    private GameObject registerUI;
+
+
     public static UIManager instance;
 
     public static UIManager Instance
@@ -11,15 +21,6 @@ public class UIManager : MonoBehaviour
             return instance;
         }
     }
-
-    [SerializeField]
-    private GameObject startScreen;
-
-    // Screen object variables
-    public GameObject loginUI;
-    public GameObject registerUI;
-    // public GameObject userDataUI;
-    // public GameObject scoreboardUI;
 
     private void Awake()
     {
@@ -34,8 +35,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Functions to change the login screen UI
-
     /// <summary>
     /// Turn off all UI related to the login, register, user data and scoreboard.
     /// </summary>
@@ -43,40 +42,32 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
-        // userDataUI.SetActive(false);
-        // scoreboardUI.SetActive(false);
     }
 
-    public void LoginScreen() // Back button
+    /// <summary>
+    /// Open the login screen.
+    /// </summary>
+    public void LoginScreen()
     {
         ClearScreen();
         loginUI.SetActive(true);
     }
 
-    public void RegisterScreen() // Register button
+    /// <summary>
+    /// Open the register screen.
+    /// </summary>
+    public void RegisterScreen()
     {
         ClearScreen();
         registerUI.SetActive(true);
     }
 
+    /// <summary>
+    /// Close the start screen.
+    /// </summary>
     public void CloseStartScreen()
     {
         ClearScreen();
         startScreen.SetActive(false);
     }
-
-/*
-    public void UserDataScreen() // Logged in
-    {
-        ClearScreen();
-        userDataUI.SetActive(true);
-    }
-
-    public void ScoreboardScreen() // Scoreboard button
-    {
-        ClearScreen();
-        scoreboardUI.SetActive(true);
-    }
-*/
-
 }
