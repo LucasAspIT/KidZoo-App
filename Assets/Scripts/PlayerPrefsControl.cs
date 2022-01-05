@@ -26,7 +26,11 @@ public class PlayerPrefsControl : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Checks PlayerPrefs for saved login data, and inserts it if any has been saved:
+    /// <para>Saved email and/or password.</para>
+    /// <para>Saved toggle state for the checkboxes "Save email" and "Save password".</para>
+    /// </summary>
     public void UseLoginInformation()
     {
         if (PlayerPrefs.GetInt("SavedEmailBool", 1) == 1)
@@ -41,6 +45,9 @@ public class PlayerPrefsControl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Saves the email and/or password locally via PlayerPrefs if the user has chosen to do so.
+    /// </summary>
     public void SaveLoginInformation()
     {
         if (PlayerPrefs.GetInt("SavedEmailBool", 1) == 1)
