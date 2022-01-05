@@ -146,7 +146,7 @@ public class FirebaseManager : MonoBehaviour
     public void SignOutButton()
     {
         auth.SignOut();
-        UIManager.instance.LoginScreen();
+        UIManager.Instance.LoginScreen();
         ClearRegisterFields();
         ClearLoginFields();
     }
@@ -260,7 +260,7 @@ public class FirebaseManager : MonoBehaviour
             confirmLoginText.text = "";
             ClearLoginFields();
             ClearRegisterFields();
-            UIManager.instance.CloseStartScreen();
+            UIManager.Instance.CloseStartScreen();
         }
     }
 
@@ -373,7 +373,7 @@ public class FirebaseManager : MonoBehaviour
 
                         // Username is now set
                         // Now return to login screen
-                        UIManager.instance.LoginScreen();
+                        UIManager.Instance.LoginScreen();
                         warningRegisterText.text = "";
                         ClearLoginFields();
                         ClearRegisterFields();

@@ -4,6 +4,14 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public static UIManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     [SerializeField]
     private GameObject startScreen;
 
