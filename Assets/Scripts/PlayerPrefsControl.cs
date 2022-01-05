@@ -24,17 +24,6 @@ public class PlayerPrefsControl : MonoBehaviour
         {
             instance = this;
         }
-
-/*
-        if (PlayerPrefs.GetInt("SavedEmailBool", 1) == 1)
-        {
-            SaveEmail = true;
-        }
-        if (PlayerPrefs.GetInt("SavedPasswordBool", 1) == 1)
-        {
-            SavePassword = true;
-        }
-*/
     }
 
 
