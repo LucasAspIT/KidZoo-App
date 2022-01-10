@@ -5,7 +5,7 @@ A small app made for practice.
 
 *Allows the user to login (via Firebase), and view some animals, with pictures, and information about them.
 
-*The database (via Firebase) saves some information about registered users. (Name, Address, Phone number, e-mail, birthday, reigster date.)
+*The database (via Firebase) saves some information about registered users. (Name, Address, Phone number, e-mail, birthday, register date.)
 
 *All users have a personal log they can write in, which is saved via PlayerPrefs.
 
