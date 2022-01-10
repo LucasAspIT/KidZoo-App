@@ -17,4 +17,4 @@ A small app made for practice.
 
 *Optionally, AR may be included. It would work by showing a specific image of an animal (you'd have printed out) on your camera, and it would start animating the image.
 
-***NOTE: Read dependencies.txt to see waht must be manually imported in order for everything to function.
+**NOTE: Read dependencies.txt to see what must be manually imported in order for everything to function.
