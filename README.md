@@ -9,7 +9,7 @@ A small app made for practice.
 
 *All users have a personal log they can write in, which is saved via PlayerPrefs.
 
-*An administrator has access to CRUD, so the ability to create animals, read animas (view their info like users do), update animals, and delete animals.
+*An administrator has access to CRUD, so the ability to create animals, read animals (view their info like users do), update animals, and delete animals.
 
 *UnitTests are also included, for testing of the most important parts of the app.
 
